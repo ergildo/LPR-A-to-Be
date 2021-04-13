@@ -25,17 +25,17 @@ Microservices which provides LPR´s APIs.
 Database where the datas will be stored.
 
 # Dependencies
-Java 11\
-Maven 3.6.3\
-Docker 20.10.5\
-Docker Compose 1.28.5\
-GNU Make 3.81\
+Java 11<br/>
+Maven 3.6.3<br/>
+Docker 20.10.5<br/>
+Docker Compose 1.28.5<br/>
+GNU Make 3.81<br/>
 
 # Technologies
-Java, Spring boot, JPA/Hibernate, JUnit\
-Kafka, Eureka, Spring Cloud Gateway, PostgreSQL\
-Elasticseach, Kibana, Logstash\
-Docker, Maven\
+Java, Spring boot, JPA/Hibernate, JUnit<br/>
+Kafka, Eureka, Spring Cloud Gateway, PostgreSQL<br/>
+Elasticseach, Kibana, Logstash<br/>
+Docker, Maven<br/>
 
 # How to Run
 ``` 
@@ -69,13 +69,6 @@ http://localhost:8080/swagger-ui.html
 # Contacts
 #### If you have any problems or questions, please contact me
 
-**e-mail:** ergildo@gmail\
+**e-mail:** ergildo@gmail<br/>
 
-**whatsapp:** +55 98488-4825\
-
-
-
-
-
-
-
+**whatsapp:** +55 98488-4825<br/>
