@@ -18,7 +18,7 @@ Microservice where clients will connect to publish photos to the Message Broker
 ## 5. Events Consumer (Spring Boot/Kafka)
 Microservice which will consume photos to the Message Broker. 
 
-## 6. Rest API (Spring Boot)
+## 6. Rest API Service(Spring Boot)
 Microservices which provides LPR´s APIs. 
 
 ## 7. Database (PostgreSQL)
@@ -59,7 +59,7 @@ Unfortunatly, I did not configure the swagger documentation on the API Gateway. 
 ### Events producer
 http://localhost:8081/swagger-ui.html
 
-### Rest APi
+### Rest API Service
 http://localhost:8080/swagger-ui.html
 
 # Monitoring and Metrics
