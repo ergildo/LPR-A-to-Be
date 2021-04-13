@@ -51,7 +51,7 @@ The makeFile was made to run on Mac OS / Linux. If you use Windows you might hav
 
 # How to use
 
-I provided a file **requests/request-colletions** on project´s root path which is a postman´s request collections with all endpoint requests. Import it on Postman and test the application solution.
+I provided a file **requests/request-colletions** in project´s root path which is a postman´s request collections with all endpoint requests. Import it on Postman and test the application solution.
 
 # Documentation
 Unfortunatly, I did not configure the swagger documentation on the API Gateway. So, it means if want to access the endpoints documentation you have to do it individually for each microserves.
