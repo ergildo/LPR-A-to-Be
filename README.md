@@ -32,8 +32,8 @@ Docker Compose 1.28.5<br/>
 GNU Make 3.81<br/>
 
 # Technologies
-Java, Spring boot, JPA/Hibernate, JUnit<br/>
-Kafka, Eureka, Spring Cloud Gateway, PostgreSQL<br/>
+Java, Spring boot, JPA/Hibernate, JUni, Liquibase, Swagger<br/>
+Kafka, Eureka, Spring Cloud Gateway, Spring Cloud Openfeign PostgreSQL<br/>
 Elasticseach, Kibana, Logstash<br/>
 Docker, Maven<br/>
 
