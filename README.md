@@ -13,16 +13,16 @@ Service where all microservice instances will register themselves and the client
 Message broker where the photos will be published.
 
 ## 4. Events Producer (Spring boot/Kafka)
-Microservice where clients will connect to publish events to the Message Broker
+Microservice where clients will connect to publish photos to the Message Broker
 
 ## 5. Events Consumer (Spring Boot/Kafka)
-Microservice which will consume photos to Messaging Broker. 
+Microservice which will consume photos to the Message Broker. 
 
 ## 6. Rest API (Spring Boot)
 Microservices which provides LPR´s APIs. 
 
 ## 7. Database (PostgreSQL)
-Database where the datas will be stored
+Database where the datas will be stored.
 
 # Dependencies
 Java 11,
@@ -42,7 +42,7 @@ Docker, Maven
 make run 
 
 ```
-It will build all spring boot applications and create a docker image and then it will use the docker compose to run all services.
+It will build all spring boot applications and create a docker image and then uses the docker compose to run all needed services.
 
 Make sure you have all the dependencies installed.
 
@@ -54,7 +54,7 @@ The makeFile was made to run on Mac OS / Linux. If you use Windows you might hav
 I provided a file **requests/request-colletions** on project´s root path which is a postman´s request collections with all endpoint requests. Import it on Postman and test the application solution.
 
 # Documentation
-Unfortunatly, I did not configure the swagger documentation on the API Gateway. So, it means if want to access the endpoints documentation you have to do individually for each microserves.
+Unfortunatly, I did not configure the swagger documentation on the API Gateway. So, it means if want to access the endpoints documentation you have to do it individually for each microserves.
 
 ### Events producer
 http://localhost:8081/swagger-ui.html
@@ -68,8 +68,9 @@ http://localhost:8080/swagger-ui.html
 
 ##### If you have any problems or questions, please contact me
 
-**e-mail:*** ergildo@gmail
-**whatsapp:** +55 98488-4825
+#####  e-mail: ergildo@gmail
+
+##### whatsapp: +55 98488-4825
 
 
 
