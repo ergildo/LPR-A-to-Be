@@ -25,18 +25,18 @@ Microservices which provides LPR´s APIs.
 Database where the datas will be stored
 
 # Dependencies
-Java 11
-Maven
-Docker
-Docker Compose
-Makefile
+Java 11,
+Maven,
+Docker,
+Docker Compose,
+Makefile,
 
 # Technologies
-Java, Spring boot, JPA/Hibernate, JUnit
-Kafka, Eureka, Spring Cloud Gateway, PostgreSQL
-Elasticseach, Kibana, Logstash
+Java, Spring boot, JPA/Hibernate, JUnit,
+Kafka, Eureka, Spring Cloud Gateway, PostgreSQL,
+Elasticseach, Kibana, Logstash,
 Docker, Maven
-Tecnologies
+
 # How to Run
 make run
 It will build all spring boot applications and create a docker image and then it will use the docker compose to run all services.
@@ -53,17 +53,17 @@ I provided a file **requests/request-colletions** on project´s root path which 
 # Documentation
 Unfortunatly, I did not configure the swagger documentation on the API Gateway. So, it means if want to access the endpoints documentation you have to do individually for each microserves.
 
-## Events producer
+### Events producer
 http://localhost:8081/swagger-ui.html
 
-## Rest APi
+### Rest APi
 http://localhost:8081/swagger-ui.html#
 
 # Monitoring and Metrics
 
-## Kibana
+### Kibana
 
-#### If you have any problems or questions, please contact me
+##### If you have any problems or questions, please contact me
 
 **e-mail:*** ergildo@gmail
 **whatsapp:** +55 98488-4825
