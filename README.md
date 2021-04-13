@@ -25,11 +25,11 @@ Microservices which provides LPR´s APIs.
 Database where the datas will be stored.
 
 # Dependencies
-Java 11,
-Maven,
-Docker,
-Docker Compose,
-Makefile,
+Java 11,\
+Maven 3.6.3,\
+Docker 20.10.5,\
+Docker Compose 1.28.5,\
+GNU Make 3.81,\
 
 # Technologies
 Java, Spring boot, JPA/Hibernate, JUnit,
