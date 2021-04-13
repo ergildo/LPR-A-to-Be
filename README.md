@@ -38,7 +38,7 @@ Elasticseach, Kibana, Logstash,
 Docker, Maven
 
 # How to Run
-make run
+``` make run ```
 It will build all spring boot applications and create a docker image and then it will use the docker compose to run all services.
 
 Make sure you have all the dependencies installed.
