@@ -33,7 +33,7 @@ GNU Make 3.81<br/>
 
 # Technologies
 Java, Spring boot, JPA/Hibernate, JUni, Liquibase, Swagger<br/>
-Kafka, Eureka, Spring Cloud Gateway, Spring Cloud Openfeign PostgreSQL<br/>
+Kafka, Eureka, Spring Cloud Gateway, Spring Cloud Openfeign, PostgreSQL<br/>
 Elasticseach, Kibana, Logstash<br/>
 Docker, Maven<br/>
 
