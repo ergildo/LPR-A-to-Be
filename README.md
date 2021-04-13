@@ -60,7 +60,7 @@ Unfortunatly, I did not configure the swagger documentation on the API Gateway. 
 http://localhost:8081/swagger-ui.html
 
 ### Rest APi
-http://localhost:8081/swagger-ui.html#
+http://localhost:8080/swagger-ui.html
 
 # Monitoring and Metrics
 
