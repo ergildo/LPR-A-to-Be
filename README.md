@@ -178,7 +178,16 @@ make test-lpr-service-discover
 To see the log on Kibana you have to create the index pattern ***logstash-****
 
 ### Grafana
-[http://localhost:5601/](http://localhost:5601)
+[http://localhost:3000/dashboards/](http://localhost:3000/dashboards)
+
+### Prometheus
+[http://localhost:9090](http://localhost:9090)
+
+### Elasticsearch
+[http://localhost:9200](http://localhost:9200)
+
+### Logstash
+[http://localhost:9600](http://localhost:9600)
 
 # Contacts
 #### If you have any problems or questions, please contact me
