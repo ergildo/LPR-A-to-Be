@@ -96,7 +96,7 @@ Import the  file **requests/request-colletions** on Postman. This request collec
 ### Kibana
 [http://localhost:5601/](http://localhost:5601)
 
-The see the log on Kibana you have to create the index partner ***logstash-* ***
+The see the log on Kibana you have to create the index partner ***logstash-****
 
 ### Grafana
 [http://localhost:5601/](http://localhost:5601)
