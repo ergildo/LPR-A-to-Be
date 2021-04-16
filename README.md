@@ -78,10 +78,41 @@ zookeeper                     /etc/confluent/docker/run        Up      0.0.0.0:2
 
 Make sure all the services is up.
 
+### Usefull commandas
+
+``` 
+make clean 
+
+```
+Clean all projects
+
+``` 
+make build 
+
+```
+Create and build docker images
+
+``` 
+make start 
+
+```
+Start all services
+
+``` 
+make status 
+
+```
+Show services status
+
+``` 
+make stop 
+
+```
+Stop all services
 
 # Usage
 
-Import the  file **requests/request-colletions** on Postman. This request collections contains all endpoint requests. Execute the postman´s collection and then access the Kibana see the logs. 
+Import the  file **requests/request-colletions** on Postman. This request collections contains all public endpoint requests. Execute the postman´s collection and then access the Kibana see the logs. All requests go through the gateway, so the idea here is show how the microservices communique to each other. Do that and see what is going on behind the scene. 
 
 # Documentation
 
