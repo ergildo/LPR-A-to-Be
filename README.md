@@ -43,7 +43,7 @@ Docker, Maven<br/>
 In order to simplify the building, launching and deployment process, this project uses a GNU make script. 
 What is GNU Make? GNU Make is a program that automates the running of shell commands and helps with repetitive tasks.
 
-[For further information)(https://www.gnu.org/software/make/)
+[For further information](https://www.gnu.org/software/make/)
 
 ***The make script was made to run on Mac OS / Linux. If you use Windows you might have some problems.***
 
@@ -94,10 +94,12 @@ Import the  file **requests/request-colletions** on Postman. This request collec
 # Monitoring and Metrics
 
 ### Kibana
-[http://localhost:5601/](http://localhost:5601/)
+[http://localhost:5601/](http://localhost:5601)
+
+The see the log on Kibana you have to create the index partner *** logstash-* ***
 
 ### Grafana
-[http://localhost:5601/](http://localhost:5601/)
+[http://localhost:5601/](http://localhost:5601)
 
 # Contacts
 #### If you have any problems or questions, please contact me
