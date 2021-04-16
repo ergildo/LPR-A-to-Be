@@ -34,37 +34,70 @@ GNU Make 3.81<br/>
 # Technologies
 Java, Spring boot, JPA/Hibernate, JUni, Liquibase, Swagger<br/>
 Kafka, Eureka, Spring Cloud Gateway, Spring Cloud Openfeign, PostgreSQL<br/>
-Elasticseach, Kibana, Logstash<br/>
+ELK (Elasticseach, Kibana, Logstash)<br/>
+Grafana<br/>
 Docker, Maven<br/>
 
-# How to Run
+# Installation
+### Notes:
+In order to simplify the building, launching and deployment process, this project uses a GNU make script. 
+What is GNU Make? GNU Make is a program that automates the running of shell commands and helps with repetitive tasks.
+
+[For further information)(https://www.gnu.org/software/make/)
+
+***The make script was made to run on Mac OS / Linux. If you use Windows you might have some problems.***
+
+To run this project execute:
+
 ``` 
 make run 
 
 ```
-It will build all spring boot applications and create a docker image and then uses the docker compose to run all needed services.
 
-Make sure you have all the dependencies installed.
 
-### Notes:
-The makeFile was made to run on Mac OS / Linux. If you use Windows you might have some problems.
+It will build all spring boot applications, create a docker image, build the images, run all the services and show its status.
 
-# How to use
+``` 
+           Name                          Command               State                                    Ports
+-----------------------------------------------------------------------------------------------------------------------------------------------
+broker                        /etc/confluent/docker/run        Up      0.0.0.0:29092->29092/tcp, 0.0.0.0:9092->9092/tcp, 0.0.0.0:9101->9101/tcp
+lpr-a-to-be_elasticsearch_1   /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp
+lpr-a-to-be_grafana_1         /run.sh                          Up      0.0.0.0:3000->3000/tcp
+lpr-a-to-be_kibana_1          /usr/local/bin/dumb-init - ...   Up      0.0.0.0:5601->5601/tcp
+lpr-a-to-be_logstash_1        /usr/local/bin/docker-entr ...   Up      0.0.0.0:5000->5000/tcp, 5044/tcp, 0.0.0.0:9600->9600/tcp
+lpr-a-to-be_postgresql-db_1   docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp
+lpr-api                       /cnb/process/web                 Up      0.0.0.0:8080->8080/tcp
+lpr-api-gateway               /cnb/process/web                 Up      0.0.0.0:8282->8282/tcp
+lpr-events-consumer           /cnb/process/web                 Up      0.0.0.0:8082->8082/tcp
+lpr-events-producer           /cnb/process/web                 Up      0.0.0.0:8081->8081/tcp
+lpr-service-discover          /cnb/process/web                 Up      0.0.0.0:8761->8761/tcp
+prometheus                    /bin/prometheus --config.f ...   Up      0.0.0.0:9090->9090/tcp
+zookeeper                     /etc/confluent/docker/run        Up      0.0.0.0:2181->2181/tcp, 2888/tcp, 3888/tcp
 
-I provided a file **requests/request-colletions** in project´s root path which is a postman´s request collections with all endpoint requests. Import it on Postman and test the application solution.
+```
+
+Make sure all the services is up.
+
+
+# Usage
+
+Import the  file **requests/request-colletions** on Postman. This request collections contains all endpoint requests. Execute the postman´s collection and then access the Kibana see the logs. 
 
 # Documentation
-Unfortunatly, I did not configure the swagger documentation on the API Gateway. So, it means if want to access the endpoints documentation you have to do it individually for each microserves.
 
 ### Events producer
-http://localhost:8081/swagger-ui.html
+[http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
 
 ### Rest API Service
-http://localhost:8080/swagger-ui.html
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 # Monitoring and Metrics
 
 ### Kibana
+[http://localhost:5601/](http://localhost:5601/)
+
+### Grafana
+[http://localhost:5601/](http://localhost:5601/)
 
 # Contacts
 #### If you have any problems or questions, please contact me
