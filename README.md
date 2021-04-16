@@ -115,6 +115,43 @@ Stop all services
 
 Import the  file **requests/postman_collection.json** on Postman. This request collections contains all public endpoint requests. Execute this requests collection and then access the Kibana see the logs. All requests go through the gateway, so the idea here is show how the microservices communique to each other. Do that and see what is going on behind the scene. 
 
+# Tests
+
+Run lpr-api´s unit tests
+
+``` 
+make test-lpr-api
+
+```
+
+Run lpr-events-producer´s unit tests
+
+``` 
+make test-lpr-events-producer
+
+```
+
+Run lpr-events-consumer´s unit tests
+
+``` 
+make test-lpr-events-consumer
+
+```
+
+Run lpr-api-gateway´s unit tests
+
+``` 
+make test-lpr-api-gateway
+
+```
+
+Run lpr-service-discover´s unit tests
+
+``` 
+make test-lpr-service-discover
+
+```
+
 # Documentation
 
 ### Events producer
@@ -128,7 +165,7 @@ Import the  file **requests/postman_collection.json** on Postman. This request c
 ### Kibana
 [http://localhost:5601/](http://localhost:5601)
 
-The see the log on Kibana you have to create the index pattern ***logstash-****
+To see the log on Kibana you have to create the index pattern ***logstash-****
 
 ### Grafana
 [http://localhost:5601/](http://localhost:5601)
