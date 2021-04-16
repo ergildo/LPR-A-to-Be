@@ -173,7 +173,7 @@ make test-lpr-service-discover
 # Monitoring and Metrics
 
 ### Kibana
-[http://localhost:5601/](http://localhost:5601)
+[http://localhost:5601/app/kibana#/discover](http://localhost:5601/app/kibana#/discover)
 
 To see the log on Kibana you have to create the index pattern ***logstash-****
 
