@@ -55,7 +55,7 @@ make run
 ```
 
 
-It will build all spring boot applications, create a docker image, build the images, run all the services and show its status.
+It will create and build the docker images, run all services and show its status.
 
 ``` 
            Name                          Command               State                                    Ports
@@ -76,7 +76,7 @@ zookeeper                     /etc/confluent/docker/run        Up      0.0.0.0:2
 
 ```
 
-Make sure all the services is up.
+Make sure all services is up.
 
 ### Usefull commandas
 
@@ -109,6 +109,7 @@ make stop
 
 ```
 Stop all services
+
 
 # Usage
 
