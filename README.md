@@ -113,7 +113,7 @@ Stop all services
 
 # Usage
 
-Import the  file **requests/request-colletions** on Postman. This request collections contains all public endpoint requests. Execute the postman´s collection and then access the Kibana see the logs. All requests go through the gateway, so the idea here is show how the microservices communique to each other. Do that and see what is going on behind the scene. 
+Import the  file **requests/postman_collection.json** on Postman. This request collections contains all public endpoint requests. Execute this requests collection and then access the Kibana see the logs. All requests go through the gateway, so the idea here is show how the microservices communique to each other. Do that and see what is going on behind the scene. 
 
 # Documentation
 
