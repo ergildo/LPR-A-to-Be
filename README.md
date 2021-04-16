@@ -24,7 +24,7 @@ Microservices which provides LPR´s APIs.
 ## 7. Database (PostgreSQL)
 Database where the datas will be stored.
 
-# Dependencies
+# Prerequisite
 Java 11<br/>
 Maven 3.6.3<br/>
 Docker 20.10.5<br/>
