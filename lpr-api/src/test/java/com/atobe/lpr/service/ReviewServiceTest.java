@@ -32,11 +32,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public class ReviewServiceTest {
   @Autowired ReviewService reviewService;
   @MockBean ReviewRepository reviewRepository;
+  @MockBean
+  Review reviewMock;
 
   @Test
   public void reviewPhotoSuccess() {
     Long id = 1l;
-    Review review = getReview();
+    Review review = Mockito.mock(Review.class);
     ReviewStatus inProgress = ReviewStatus.IN_PROGRESS;
     Mockito.when(reviewRepository.findById(id)).thenReturn(Optional.of(review));
     reviewService.reviewPhoto(id);
@@ -47,7 +49,7 @@ public class ReviewServiceTest {
   @Test
   public void reviewPhotoSuccessFail() {
     Long id = 1l;
-    Review review = getReview();
+    Review review = Mockito.mock(Review.class);
     ReviewStatus inProgress = ReviewStatus.IN_PROGRESS;
     Mockito.when(reviewRepository.findById(id)).thenThrow(new ResultNotFoundException(""));
 
@@ -61,7 +63,7 @@ public class ReviewServiceTest {
   @Test
   public void submitPhotoSuccess() {
     Long id = 1l;
-    Review review = getReview();
+    Review review = Mockito.mock(Review.class);
     ReviewStatus completed = ReviewStatus.COMPLETED;
 
     ReviewResultDTO reviewResult =
@@ -76,7 +78,7 @@ public class ReviewServiceTest {
   @Test
   public void submitPhotoSuccessFail() {
     Long id = 1l;
-    Review review = getReview();
+    Review review = Mockito.mock(Review.class);
     ReviewStatus completed = ReviewStatus.COMPLETED;
 
     ReviewResultDTO reviewResult = Mockito.mock(ReviewResultDTO.class);
@@ -86,7 +88,6 @@ public class ReviewServiceTest {
     Assertions.assertThrows(
         ResultNotFoundException.class, () -> reviewService.submitReview(reviewResult));
 
-    ;
     verify(review, never()).setReviewStatus(completed);
     verify(reviewRepository, never()).save(any());
   }
