@@ -1,0 +1,52 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: lpr-events-producer
+    team: lpr
+
+  kafka:
+    template:
+      default-topic: photos-review-events
+    producer:
+      bootstrap-servers: broker:29092
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    admin:
+      properties:
+        bootstrap.servers: broker:29092
+
+events:
+  topics:
+    events-photo-review: photos-review-events
+
+eureka:
+  instance:
+    prefer-ip-address: true # registers the service ip rather than the server name
+  client:
+    register-with-eureka: true # register him self at eureka
+    fetch-registry: true # pull down a local copy of the registries
+    service-url:
+      defaultZone: http://lpr-service-discover:8761/eureka # discovery service location
+
+elasticsearch:
+    cluster-name: spring-boot-cluster
+    host: localhost
+    port: 9300
+
+logging:
+  file:
+    path: /usr/share/logstash/logs
+    name: /usr/share/logstash/logs/lpr-api.log
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+

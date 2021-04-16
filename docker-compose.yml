@@ -1,0 +1,208 @@
+version: "3.5"
+services:
+  postgresql-db:
+    image: postgres:10-alpine
+    volumes:
+       - ./containers/postgresql:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_MULTIPLE_DATABASES="lpr-api-db"
+      - POSTGRES_USER=lpr-api-db-user
+      - POSTGRES_PASSWORD=lpr-api-db-pass
+    ports:
+      - 5432:5432
+    privileged: true
+    deploy:
+      resources:
+        limits:
+          memory: 100m
+        reservations:
+          memory: 40m
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    volumes:
+      - ./containers/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.5.2
+    command: -f /etc/logstash/conf.d/
+    volumes:
+      - ./containers/logstash/logstash.conf:/etc/logstash/conf.d/logstash.conf
+      - ./containers/logs:/usr/share/logstash/logs
+    ports:
+      - "5000:5000"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.2
+    volumes:
+      - ./containers/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    depends_on:
+      - logstash
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.1.1
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:6.1.1
+    hostname: broker
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+      - "9092:9092"
+      - "9101:9101"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+
+  lpr-api-gateway:
+    image: lpr-api-gateway:0.0.1-SNAPSHOT
+    volumes: 
+      - ./containers/logs:/usr/share/logstash/logs
+    environment:
+      - 'SPRING_APPLICATION_JSON={
+          "spring": {
+            "profiles": {
+              "active": "docker"
+            }
+          }
+        }'
+    hostname: lpr-api-gateway
+    container_name: lpr-api-gateway
+    depends_on:
+      - lpr-service-discover
+    ports:
+      - "8282:8282"    
+
+  lpr-service-discover:
+    image: lpr-service-discover:0.0.1-SNAPSHOT
+    volumes: 
+      - ./containers/logs:/usr/share/logstash/logs
+    environment:
+      - 'SPRING_APPLICATION_JSON={
+          "spring": {
+            "profiles": {
+              "active": "docker"
+            }
+          }
+        }'
+    hostname: lpr-service-discover
+    container_name: lpr-service-discover
+    ports:
+      - "8761:8761"    
+      
+  lpr-api:
+    image: lpr-api:0.0.1-SNAPSHOT
+    volumes: 
+      - ./containers/logs:/usr/share/logstash/logs
+    environment:
+      - 'SPRING_APPLICATION_JSON={
+          "spring": {
+            "profiles": {
+              "active": "docker"
+            }
+          }
+        }'
+    hostname: lpr-api
+    container_name: lpr-api
+    depends_on:
+      - postgresql-db
+      - kibana
+      - lpr-api-gateway
+    ports:
+      - "8080:8080"    
+
+  lpr-events-producer:
+    image: lpr-events-producer:0.0.1-SNAPSHOT
+    volumes: 
+      - ./containers/logs:/usr/share/logstash/logs
+    environment:
+      - 'SPRING_APPLICATION_JSON={
+          "spring": {
+            "profiles": {
+              "active": "docker"
+            }
+          }
+        }'
+    hostname: lpr-events-producer
+    container_name: lpr-events-producer
+    depends_on:
+      - lpr-api
+      - broker
+    links:
+      - broker:broker
+    ports:
+      - "8081:8081" 
+
+  lpr-events-consumer:
+    image: lpr-events-consumer:0.0.1-SNAPSHOT
+    volumes: 
+      - ./containers/logs:/usr/share/logstash/logs
+    environment:
+      - 'SPRING_APPLICATION_JSON={
+          "spring": {
+            "profiles": {
+              "active": "docker"
+            }
+          }
+        }'
+    hostname: lpr-events-consumer
+    container_name: lpr-events-consumer
+    depends_on:
+      - broker
+      - lpr-api
+      - lpr-events-producer
+    links: 
+      - broker:broker
+    ports:
+      - "8082:8082"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+    - ./containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+    volumes:
+      - ./containers/grafana/provisioning:/etc/grafana/provisioning/
+       

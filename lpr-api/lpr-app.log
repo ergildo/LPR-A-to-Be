@@ -1,0 +1,3 @@
+2021-04-14 10:13:40.339  INFO 6185 --- [main] com.atobe.lpr.service.PhotoServiceTest   : Starting PhotoServiceTest using Java 11.0.2 on MacBook-Pro-de-Invillia.local with PID 6185 (started by ergildo.dias in /Users/ergildo.dias/des/LPR-A-to-Be/lpr-api)
+2021-04-14 10:13:40.340  INFO 6185 --- [main] com.atobe.lpr.service.PhotoServiceTest   : The following profiles are active: test
+2021-04-14 10:13:41.128  INFO 6185 --- [main] com.atobe.lpr.service.PhotoServiceTest   : Started PhotoServiceTest in 1.88 seconds (JVM running for 2.899)

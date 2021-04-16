@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: lpr-api
+    team: lpr
+  datasource:
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:postgresql://localhost:5432/lpr-api-db
+      username: lpr-api-db-user
+      password: lpr-api-db-pass
+      pool-name: ${spring.application.name}-user-pool
+    platform: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      show-sql: true
+      format_sql: true
+    database: POSTGRESQL
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog-master.xml
+
+eureka:
+  instance:
+    prefer-ip-address: true # registers the service ip rather than the server name
+  client:
+    register-with-eureka: true # register him self at eureka
+    fetch-registry: true # pull down a local copy of the registries
+    service-url:
+      defaultZone: http://localhost:8761/eureka # discovery service location
+
+elasticsearch:
+  cluster-name: spring-boot-cluster
+  host: localhost
+  port: 9300
+
+logging:
+  file:
+    path: /usr/share/logstash/logs
+    name: /usr/share/logstash/logs/lpr-api.log
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+
+

@@ -1,0 +1,10 @@
+{
+  "reviewId": 1,
+  "photo": {
+    "photoId": 1,
+    "fileName": "fileName",
+    "filePath": "filePath"
+  },
+  "licensePlateNumber": null,
+  "reviewStatus": "CREATED"
+}

@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+
+  kafka:
+    consumer:
+      bootstrap-servers: broker:29092
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: lpr-events-listener-group
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+lpr-api:
+  url: http://lpr-api:8080
+

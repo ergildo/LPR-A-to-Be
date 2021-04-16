@@ -1,0 +1,29 @@
+server:
+  port: 8282
+
+eureka:
+  instance:
+    prefer-ip-address: true # registers the service ip rather than the server name
+  client:
+    register-with-eureka: true # register him self at eureka
+    fetch-registry: true # pull down a local copy of the registries
+    service-url:
+      defaultZone: http://lpr-service-discover:8761/eureka # discovery service location
+
+spring:
+  application:
+    name: lrp-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: lprApi
+          uri: lb://LPR-API
+          predicates:
+          - Path=/photos/**, /reviews/**
+        - id: lprEventsProducer
+          uri: lb://LPR-EVENTS-PRODUCER
+          predicates:
+          - Path=/events/**
