@@ -80,35 +80,36 @@ Make sure all services is up.
 
 ### Usefull commandas
 
+##### Clean all projects
+
 ``` 
 make clean 
 
 ```
-Clean all projects
+##### Create and build docker images
 
 ``` 
 make build 
 
 ```
-Create and build docker images
+##### Start all services
 
 ``` 
 make start 
 
 ```
-Start all services
+##### Show services status
 
 ``` 
 make status 
 
 ```
-Show services status
+##### Stop all services
 
 ``` 
 make stop 
 
 ```
-Stop all services
 
 
 # Usage
@@ -117,21 +118,30 @@ Import the  file **requests/postman_collection.json** on Postman. This request c
 
 # Tests
 
-Run lpr-api´s unit tests
+You can run all tests together or separately
+
+##### Run all tests
+
+``` 
+make test
+
+```
+
+##### Run lpr-api´s unit tests
 
 ``` 
 make test-lpr-api
 
 ```
 
-Run lpr-events-producer´s unit tests
+##### Run lpr-events-producer´s unit tests
 
 ``` 
 make test-lpr-events-producer
 
 ```
 
-Run lpr-events-consumer´s unit tests
+##### Run lpr-events-consumer´s unit tests
 
 ``` 
 make test-lpr-events-consumer
@@ -145,7 +155,7 @@ make test-lpr-api-gateway
 
 ```
 
-Run lpr-service-discover´s unit tests
+##### Run lpr-service-discover´s unit tests
 
 ``` 
 make test-lpr-service-discover
